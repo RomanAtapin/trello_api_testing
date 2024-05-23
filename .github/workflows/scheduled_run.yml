@@ -2,9 +2,9 @@ name: scheduled_run
 
 # контарлирует события по которым запускается пайп-лайн спусковой крючек ПЛ
 on:
-  workflow: dispatch
-  schedule:
-    - cron: 30 3 * * 4
+  workflow_dispatch:
+    schedule:
+     - cron: 30 3 * * 4
 # добовляем возможность запуска с кнопки
 jobs:
   
