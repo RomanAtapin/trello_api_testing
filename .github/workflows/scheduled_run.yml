@@ -33,3 +33,9 @@ jobs:
       #
       - name: check Report.html file available
         run: ls
+
+      - name: publish test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: Reports
+          path: Report.html
