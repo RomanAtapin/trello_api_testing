@@ -30,3 +30,6 @@ jobs:
       # запуск теста с формированиме отчета    
       - name: test run
         run: newman run Trello_Roman.postman_collection.json -e Trello_Environment.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export Report.html   
+      #
+      - name: check Report.html file available
+        run: ls
