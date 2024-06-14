@@ -37,14 +37,15 @@ jobs:
           name: Reports
           path: "*html"
       # отправка результата почте
-      name: Send test results via email
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.example.com
-        server_port: 587
-        username: ${{ atapin74@gmail.com }}
-        password: ${{ Atapin_18 }}
-        subject: "Test results for scheduled run"
-        body: "Please find attached the test results report."
-        to: example@example.com
-        attachments: Report.html     
+      - name: Send test results via email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASWORD }}
+          subject: "Test results for scheduled run"
+          body: "Please find attached the test results report."
+          to: atapin74@gmail.com
+          from: GitHab Actions
+          attachments: Report.html     
