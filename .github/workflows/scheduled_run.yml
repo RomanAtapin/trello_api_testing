@@ -30,12 +30,22 @@ jobs:
       # запуск теста с формированиме отчета    
       - name: test run
         run: newman run Trello_Roman.postman_collection.json -e Trello_Environment.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export Report.html   
-      #
-      - name: check Report.html file available
-        run: ls
 
       - name: publish test results
         uses: actions/upload-artifact@v4
         with:
           name: Reports
-          path: Report.html
+          path: "*html"
+      # отправка результата почте
+      - name: Send test results via email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASWORD }}
+          subject: "Test results for scheduled run"
+          body: "Please find attached the test results report."
+          to: atapin74@gmail.com
+          from: GitHab Actions
+          attachments: Report.html     
